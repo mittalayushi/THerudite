@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <style type="text/css">
+
+  body, html{
+     height: 100%;
+     background-repeat: no-repeat;
+   background-image: url("http://il2.picdn.net/shutterstock/videos/8974648/thumb/1.jpg"); 
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+   background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+form h1 {
+  font-size: 20px;
+  background: #fb8c00 none repeat scroll 0% 0%;
+  color: rgb(255, 255, 255);
+  padding: 22px 25px;
+  border-radius: 5px 5px 0px 0px;
+  margin: auto;
+  text-shadow: none; 
+  text-align:center;
+}
+
+form {
+  border-radius: 5px;
+  max-width:700px;
+  width:100%;
+  margin: 5% auto;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  margin-top: 10%;
+}
+
+p span {
+  color: #F00;
+}
+
+p {
+  margin: 0px;
+  font-weight: 500;
+  line-height: 2;
+  color:#333;
+}
+
+h1 {
+  text-align:center; 
+  color: #666;
+  text-shadow: 1px 1px 0px #FFF;
+  margin:50px 0px 0px 0px
+}
+
+input {
+  border-radius: 0px 5px 5px 0px;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  width: 75%;
+  height: 40px;
+  float: left;
+  padding: 0px 15px;
+}
+
+a {
+  text-decoration:inherit
+}
+
+textarea {
+  border-radius: 0px 5px 5px 0px;
+  border: 1px solid #EEE;
+  margin: 0;
+  width: 75%;
+  height: 80px; 
+  float: left;
+  padding: 0px 15px;
+}
+
+.form-group {
+  overflow: hidden;
+  clear: both;
+}
+
+.icon-case {
+  width: 35px;
+  float: left;
+  border-radius: 5px 0px 0px 5px;
+  background:#eeeeee;
+  height:42px;
+  position: relative;
+  text-align: center;
+  line-height:40px;
+}
+
+i {
+  color:#555;
+}
+
+.contentform {
+  padding: 40px 30px;
+}
+
+.login-button{
+      margin-top: 10px;
+      background-color: #fb8c00;
+      width: 30%;
+      font-size: 20px;
+
+}
+.login-button:hover{
+   background-color: #e65100 ;
+
+}
+
+.leftcontact {
+      
+  width:100%; 
+  
+  box-sizing: border-box;
+}
+
+
+.validation {
+  display:none;
+  margin: 0 0 10px;
+  font-weight:400;
+  font-size:13px;
+  color: #DE5959;
+}
+
+.navbar-default {
+  background: rgba(13, 13, 13, 0.6);
+  margin-bottom: 0;
+  border: none;
+}
+.navbar-default .navbar-header {
+  width: 28%;
+  padding: 20px 25px;
+}
+
+  </style>
+  </head>
+  <body>
+
+      <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                     <a class="navbar-brand " href="#" style="color: #fff;">Recommended Scholarships</a>
+                </div>
+            </div>
+      </nav>  
+
+<form class="form-horizontal" role="form" name="myform" method="POST" action="/organisations/signup">
+          <h1>Organisation form </h1>
+          
+  <div class="contentform">
+   
+      <div class="leftcontact" style="margin-left: 10%">
+            <div class="form-group">
+                         <p>E-mail <span>*</span></p> 
+                         <span class="icon-case"><i class="fa fa-envelope-o"></i></span>
+                         <input type="email" name="email" id="email" oninvalid="this.setCustomValidity('Please Enter valid email')" oninput="setCustomValidity('')" data-rule="email" required>
+                         <div class="help-block with-errors"></div>
+            </div>      
+
+            <div class="form-group">
+                        <p>Password <span>*</span></p>
+                        <span class="icon-case"><i class="fa fa-lock"></i></span>
+                        <input type="password" name="password" id="password" required>
+            </div>
+
+            
+      </div>
+      <div class="form-group " >
+                         <center><button type="Submit" class="btn btn-primary login-button">Submit</button></center>
+            </div>
+   </div>
+</form>
+
+  </body>
+  </html>           
