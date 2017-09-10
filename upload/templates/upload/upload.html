@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Manthan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">      
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script> 
+      <style>
+   
+    body{
+      background-color: #193540;
+      background-repeat: no-repeat;
+    background-size: cover;
+    }   
+    .reg{
+      margin-top: 2%;
+      margin-bottom:50px;
+    }
+    .manthan{
+      font-weight: bold;
+      font-family: Hawaii 5-0, sans-serif;
+      color: #193540;
+    }
+      </style>
+   </head>
+<!--<body>
+{% if mail %}
+    <div>Hi! {{name}}</div>
+    <div style="height:25px;background-color: blue">{{mail}}</div>
+
+{% endif %}      
+<div id="login"> Login </div>
+    
+        <input type="file" id="file" name="file">
+        <input type="submit" value="Submit">
+    </form>
+</body>-->
+<body>
+    <!--form starts here-->
+    <div class="container reg">
+    <div class="container">
+          <div class="card-panel hoverable">
+        <div id="registration-page" class="row">
+            <form class="col s12" id="form">
+            <div class="container">
+              <div class="row">
+                <div class="input-field col s12">
+                  <p class="center-align manthan" style="font-size: 3em">thErudite</p>
+                </div>
+              </div>
+
+              <div class="row" >
+                <div class="col s6" style="font-size: 1.2em;">Upload Resume:</div>
+                <br>
+         <form id="form">
+                <div class="file-field input-field">
+                    <div class=" col s4 btn" style="background-color:#193540 ">
+                    <span>Choose File</span>
+              
+                    <input id='file' name="file" type="file" >
+                    </div>
+                    <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                    </div>
+                </div>
+             </div>
+                          
+            <div class="row">
+              <div class="input-field col s6">
+                <input class="btn waves-effect waves-light col s12" style="background-color: #193540" type="submit" name="Submit">
+              </div>
+            </div>
+            </div>
+          </form>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!--form ends-->
+  <!--script-->
+
+<!--script-->
+   </body>   
+<script>
+
+$(document).ready(function() {
+    $('select').material_select();
+  });
+        console.log("yo");
+        console.log(document.getElementById("file"))
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            } 
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                console.log(settings)
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    console.log("HERE in ajax set-up")
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        $('#form').on('submit', function(ev){
+            console.log("Stopping event from propagation", ev)
+            ev.preventDefault();
+            console.log("Sending Request ", csrftoken)
+            var fd = new FormData();
+            console.log(document.getElementById("file"))
+            console.log(document.getElementById('file').files[0])
+            fd.append('file', document.getElementById('file').files[0])
+            console.log(fd)
+            $.ajax({
+                url: 'http://localhost:8000/scholarship/',
+                method: 'POST',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success : function(data){
+                    alert("hey");
+                window.location.href = "http://localhost:8000/upload/fill_details";
+                 },
+                 error : function(xhr,errmsg,err) {
+
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                    //console.log(csrftoken);
+                 }
+            })
+        })
+    </script>
+</html>
