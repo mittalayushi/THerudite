@@ -1,0 +1,480 @@
+<html>
+    <head>
+    <link type="text/css" rel="stylesheet" href="m2.css">
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+      <!-- Compiled and minified JavaScript -->
+      <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Delius+Swash+Caps|Faster+One|Great+Vibes|Mate|Merienda+One|Milonga|Playball|Sofia|Tangerine" rel="stylesheet">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <style type="text/css">
+    body, html {
+    margin: 0;
+    height: 100%;
+    }
+    html, body, .block {
+    height: 100%;
+  }
+       .bg{
+          /*background-image: url("https://2.bp.blogspot.com/-a-hDggsFG3E/VzZrOmf1EMI/AAAAAAAAACQ/qS3d6S0bKogSGzC47oiYM82XIAcofGYFACLcB/s1600/General-Education-PowerPoint-PPT.jpg");*/
+          background-color: #6b7a8f;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          height: 100%;
+        }
+    .bluebg{
+          padding: 10px 10px 10px 10px;
+          background-image: url("http://www.apherald.com/ImageStore/SriSoft9Images/Backgrounds/contactus-background.png");
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+          background-position: center;
+          height: 100%;
+          overflow:auto;
+          color:grey;
+      
+    }
+    .about{
+        margin-bottom:20px;
+        padding: 60px 40px 60px 40px;
+        /*border: 2px solid red;*/
+        /*border-radius: 5px;*/
+        /*outline-style: double;*/
+        /*outline-color: gray;*/
+        /*outline-width: 10px;*/
+        overflow:auto;
+        color:white;
+        background-color: #007849;
+    }
+    .contact{
+         padding: 80px 5% 20px 5%;
+         background-attachment: fixed;
+         background-image: url("http://wallpaperlayer.com/img/2015/6/wood-wallpaper-hd-517-587-hd-wallpapers.jpg");
+         background-repeat: no-repeat;
+         background-size: cover;
+         background-position: center;
+         overflow: auto;     
+    }
+     .modal { overflow:auto !important ; margin-top: 60px; width:40%; 
+     }
+
+
+
+   .modal-form-row {
+      margin-bottom: 0px;
+    }
+   .button{
+     background-image: url("google.png");
+   } 
+   .img-circle{
+    border-radius: 5%;
+    height: 20%;
+    width: 40%;
+   }
+   @media (max-width: 40em) {
+img{
+visibility:hidden;
+}
+}
+
+      </style>
+   
+
+  </head>
+
+
+<script type="text/javascript">
+  
+
+ $(document).ready(function(){
+    $('.pushpin-demo-nav').pushpin({
+      top: 585,
+      bottom: 9000,
+      offset: 0
+    });
+  });
+
+</script>
+
+
+
+
+
+
+       <script type="text/javascript">
+         $( document ).ready(function(){
+         $(".button-collapse").sideNav();
+         })
+      </script>
+  
+      <script type="text/javascript">
+          $(document).ready(function(){
+          $('.modal').modal();
+        });
+
+
+
+
+
+
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
+
+    $('.carousel.carousel-slider').carousel({duration: 200});
+
+
+ $(document).ready(function(){
+      $('.carousel').carousel();
+    });
+
+ $('.carousel').carousel({duration:200});
+
+
+
+
+          $(document).ready(function(){
+    $('.scrollspy').scrollSpy();
+  });
+      </script>
+ {% load static %}
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+  
+<div class="carousel carousel-slider" style="height: 100%">
+    <img class="carousel-item" src="http://localhost:8000/static/slide1.jpg">
+    <img class="carousel-item" src="http://localhost:8000/static/slide2.jpg">
+    <img class="carousel-item" src="http://localhost:8000/static/slide3.jpg">
+    <img class="carousel-item" src="http://localhost:8000/static/slide4.jpg">
+  </div>
+ <div style="background-color: #0375b4; height: 110% z-index:100">
+      <nav class="pushpin-demo-nav" style=" height:15%; background-color:rgba(0, 0, 0, 0.5); border-bottom: 1px solid grey ">
+        <div class="nav-wrapper" style="height:100%">
+           <a href="#!" class="brand-logo center">
+             <img style="margin-top: -176; height: 470%; width: 60%" src="http://localhost:8000/static/teold.png">
+           </a>
+           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down" style="height: 100%">
+                <li style="width: 250px; text-align: center;"><a style="font-size: 120%; margin-top: 5%" href="#Contact"><b>Contact Us</b></a></li>
+                <li style="width: 250px; text-align: center"><a style="font-size: 120%; margin-top: 5%" href="#modal1"><b>Login</b></a></li>
+                        <div id="modal1" class="modal" style="z-index: 10">
+                        <div class="modal-content" >
+                         <h4 style="color: black; text-align: center;">LOGIN</h4>
+                         <div class="row container">
+                           <a  class="col s10 offset-s1 waves-effect btn" href="http://localhost:8000/signup/student" style="background-color: #262228 ;font-family: 'Mate', cursive">Student?</a>
+ 
+                         </div>
+                         <div class="row container">
+                           <a class="col s10 offset-s1 waves-effect btn" href="http://localhost:8000/organisations" style="background-color:  #262228">Organisation?</a>
+                           
+                         </div>
+            </div>
+         </div>
+    </ul>
+        <ul class="left hide-on-med-and-down">
+          <li style="font-size: 25px; width: 250px; text-align: center;"><a style="font-size: 70%; margin-top: 5%" class="active" href="#AboutUs"><b>About Us</b></a></li>
+          <li style="font-size: 25px; width: 250px; text-align: center"><a style="font-size: 70%; margin-top: 5%" href="#team"><b>Team</b></a></li>
+        </ul>
+        <ul class=" side-nav" id="mobile-demo">
+        
+          <li><a class="active" href="#AboutUs">About Us</a></li>
+          <li ><a href="#team">Team</a></li>
+          <li style="color:white;"><a href="#Contact">Contact Us</a></li>
+          <li><a href="#modal1">Login</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="row" id="title" style="padding-top: 10%">
+         <div class="col s6 offset-s3" style="color: #262228 ;text-align: center; font-size: 15vmin; font-family:'Playball', cursive ">thErudite
+         </div>
+      <br>
+         <div class="col s7 offset-s5" style="color: #262228;margin-top:-20;text-align: center; font-size: 5vmin;font-family: 'Playball', cursive ">-Don't give yourself a reason to stop
+         </div> 
+     </div>
+
+
+
+   <br />
+   <br />
+   <br />
+
+<div class="row" style="padding-bottom: 4%">
+      <a  class="col s12 m5 l3 offset-l3 offset-m1 waves-effect btn-large" href="http://localhost:8000/signup/student" style="background-color: #262228">Join as Student</a>
+      
+  <a class="col s12 m5 l3 waves-effect btn-large " href="http://localhost:8000/organisations/signup" style="margin-left:3;background-color: #262228">Join as organisation</a>
+      </div>
+ </div>
+</body>
+  <!--
+  <div class="bg">     
+    
+  
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+
+<!--
+  <div class="container">
+     <div class="row" id="title">
+         <div class="col s6 offset-s3" style="color: #f7c331 ;text-align: center; font-size: 14vmin; font-family: 'Playball', cursive ">thErudite
+         </div>
+      <br>
+         <div class="col s7 offset-s5" style="color: #f7c331;margin-top:-20;text-align: center; font-size: 5vmin;font-family: 'Playball', cursive ">-Don't give yourself a reason to stop
+         </div> 
+     </div>
+  </div>
+
+
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+<div class="row">
+      <a  class="col s12 m5 l3 offset-l3 offset-m1 waves-effect btn-large" href="http://localhost:8000/signup/student" style="background-color: #f7c331">Join as Student</a>
+      
+  <a class="col s12 m5 l3 waves-effect btn-large " href="http://localhost:8000/organisations/signup" style="margin-left:3;background-color: #f7c331">Join as organisation</a>
+      </div>
+-->
+
+    <!--  <div id="modal3" class="modal">
+      <h4 style="color: black; text-align: center; margin-top: 4%"><b>Login</b></h4>
+      <br />
+      <div class="container">
+         <div class="row" style="">
+            <form method="POST" class="col s12" action="http://localhost:8000/organisations/signup">{% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                    <input id="org_name" name="org_name" type="text" class="validate" style="color: black;">
+                    <label for="org_name">Organisation Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                    <input id="p_name" name="name" type="text" class="validate" style="color: black;">
+                    <label for="p_name">Person to be Contacted</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                    <input id="email" name="email" type="text" class="validate" style="color: black;">
+                    <label for="email">Email Address</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                    <input id="address" name="address" type="text" class="validate" style="color: black;">
+                    <label for="address">Address</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                    <input id="phone_no" name="phone_no" type="text" class="validate" style="color: black;">
+                    <label for="phone_no">Contact Number</label>
+                    </div>
+                </div>
+      
+                <div class="row" style="">
+                  <center><a class="waves-effect waves-light btn" style="background-color:#193540 ">Submit</a></center>
+                </div>
+            </form>
+        </div>
+        </div>
+     </div> -->
+
+<!--</div>
+  -->
+  <div id="AboutUs" class="about section scrollspy" style="background-attachment: fixed background-color:#007849 margin-top:-3%" >
+      <div  style="margin-bottom: 0;margin-top:0; background-color:#007849; background-attachment: fixed; height:50%">
+        <div class="row">
+          <div class="row">
+       <center><h5 style="font-size: 35px;"><b>About Us</b></h5></center>
+       </div>
+        </div>
+      <div class="row" style="margin-top: 0">
+          <div class="col s12 m6"  style="text-align: justify; color: white; margin-top: 0">
+          <center><h5>Vision</h5></center>
+          <hr size="10">
+          <p>ThErudite was brought about in March 2017 on the belief that the girls, if given more opportunities and financial aids to pursue higher education, can bring about a positive difference to the society and the world at large.</p>
+          </div>
+      <div class="col s12 m6 "  style="text-align: justify; color: white">
+         <center><h5>Goals</h5></center>
+         <hr size="10">
+         <p>We also provide an application tracking process so that the user can know when and where their application is rejected. This will help the user to perk up their CV to improve their chances of landing a financial aid. </p>
+       </div>
+     </div>
+     </div>
+     </div>
+     <!-- </div> -->
+
+
+{% load static %}
+     <div class="row" style="margin-bottom: 0px;background-color: #262228">
+       <div  style="margin-bottom: 0;margin-top:-20; height:50%; ">
+         <div class="row" style="margin-top:0; margin-left: 10px; margin-right: 10px;">
+           <div class="col s12 m4"  style="text-align: justify; color: white; margin-top: 5%">
+             <center><h5>Endeavors for Students</h5></center>
+             <p>ThErudite helps the girls find best suited scholarships according to their profile. ThErudite, on its end, tries to narrow down the choices and hence, reducing the time wasted to scan through all the scholarships by the candidate.</p>
+           </div>
+       <div class="col s12 m4">
+         <img  src='http://localhost:8000/static/1.png' style="position: relative;
+            top: -100px;
+            z-index: 10;
+            align-items: center; margin-left: 15%; height: 90%; width: 65%;">
+       </div>
+       <div class="col s12 m4" style="text-align: justify; color: white;margin-top: 5%">
+         <center><h5>Endeavors for Organisations</h5></center>
+         <p>ThErudite gives a platform to the universities to select best candidates and gives access of the documents of their documents when an application is received.</p>
+       
+       </div>
+        </div>
+    </div>
+  </div>
+
+  
+
+
+  <!-- <div class="row"> -->
+    <!-- <div class="col s3 offset-s5" style="color: black; font-size: 3em; margin-top: 0px;">Our Team</div> -->
+     <!-- </div> -->
+     <div class="container-fluid section scrollspy" id="team" >
+     <div class="row">
+       <center><h5 style="font-size: 2.5em;"><b>Our Team</b></h5></center>
+       </div>
+     
+      <div class="row" style="margin-top: 3%;margin-bottom: 5px;">
+        <div class="col s12 m3">
+          <div class="card white darken-1" style="box-shadow: 5px 5px 5px #888888;">
+            <div class="card-content black-text">
+              <!-- <span class="card-title">Schlorship Name</span> -->
+              <center><img src="http://localhost:8000/static/ekta1.jpg" class="img-circle" alt="avatar"></center>
+              <center><p>Ekta Varshney</p></center>
+              <p style="margin-top: 10px;">CEO of thErudite,is tailor-made for this opportunity.She is a risk-taker and has a big role in taking decisions.
+              </p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card white darken-1" style="box-shadow: 5px 5px 5px #888888;">
+            <div class="card-content black-text">
+              <!-- <span class="card-title">Schlorship Name</span> -->
+              <center><img src="http://localhost:8000/static/tasha2.jpg" class="img-circle" alt="avatar"></center>
+              <center><p>Amritasha Agrawal</p></center>
+              <p style="margin-top: 10px;">CTO of thErudite,has practical engineering skills and handle business and technical strategy development.
+              </p>
+            </div>
+            
+          </div>
+        </div>
+
+        
+        <div class="col s12 m3">
+          <div class="card white darken-1" style="box-shadow: 5px 5px 5px #888888;">
+            <div class="card-content black-text">
+              <!-- <span class="card-title">Schlorship Name</span> -->
+              <center><img src="http://localhost:8000/static/sakshi.jpg" class="img-circle" alt="avatar"></center>
+              <center><p>Sakshi Garg</p></center>
+              <p style="margin-top: 10px;">CFO of thErudite,is good at managing other people and is persuasive. She has a good knowledge of analytics.
+
+              </p>
+            </div>
+            
+          </div>
+        </div>
+       <div class="col s12 m3">
+          <div class="card white darken-1" style="box-shadow: 5px 5px 5px #888888;">
+            <div class="card-content black-text">
+              <!-- <span class="card-title">Schlorship Name</span> -->
+              <center><img src="http://localhost:8000/static/ayushi.jpg" class="img-circle" alt="avatar"></center>
+              <center><p>Ayushi Mittal</p></center>
+              <p style="margin-top: 10px;">COO of thErudite, has great interpersonal skills . She understands forces that influence the market.
+
+              </p>
+            </div>
+            
+          </div>
+        </div>
+        </div>
+        </div>
+
+
+  
+<div id="Contact" class="contact section scrollspy" >
+    <h3 style="color:white">Contact Us</h3>
+    <hr>
+    <div class="row">
+  
+        <form class="col s12 m6 " id="myDiv">
+            <div class="card white darken-1" style="box-shadow: 5px 5px 2px #888888; ">
+            <div class="row" style="margin-right:20px; font-size: 1em;">
+            <!-- <div class="col s12 m6"> -->
+            
+                <div class="input-field col s12 m6">
+                    <i class="mdi-action-account-circle prefix"></i> <input
+                        id="icon_prefix" type="text" class="validate"> <label
+                        for="icon_prefix" >First Name</label>
+                </div>
+
+                <div class="input-field col s12 m6" >
+                    <i class="mdi-communication-phone prefix"></i> <input
+                        id="icon_telephone" type="tel" class="validate"> <label
+                        for="icon_telephone">Telephone</label>
+                </div>
+                <!-- </div> -->
+            
+            </div>
+            <div class="row" style="margin-right:20px; ">
+                <div class="input-field col s12">
+                    <i class="mdi-communication-email prefix"></i> <input id="email"
+                        type="email" class="validate"> <label for="email"> Your E-Mail</label>
+                </div>
+            </div>
+
+
+            <div class="row" style="margin-right:20px;">
+                <div class="input-field col s12">
+                    <i class="mdi-editor-mode-edit prefix"></i>
+                    <input id="icon_prefix2" type="text" class="validate">
+                    <label for="icon_prefix2">Message</label>
+                </div>
+            </div>
+            <div class="row" style="margin-right:20px;">
+                 <center><a class="waves-effect waves-light btn" style="background-color:#193540;margin-bottom: 10px;">Submit</a></center>
+
+            </div>
+
+         </div>
+       </form>
+    
+        <div class="col s12 m6 l6 contact-holder" style="color:white">
+            <h6 class="mdi-action-home">Address</h6>
+            <hr size="10">
+            <!-- <p style="margin-top: 0px;">No. 41, Digital Street, Kochi Kerala <br>6820505</p> -->
+            <p style="margin-top: 0px;">xxxxxxxx</p>
+            <h6 class="mdi-hardware-phone-android">Phone Number</h6>
+            <hr size="10">
+            <!-- <p style="margin-top: 0px;">+91 9895234560</p> -->
+             <p style="margin-top: 0px;">xxxxxxxx</p>
+            <h6 class="mdi-action-open-in-browser">Website</h6>
+            <hr size="10">
+            <!-- <p style="margin-top: 0px;">mytutorials.com</p> -->
+             <p style="margin-top: 0px;">xxxxxxxx</p>
+
+        </div>
+  </div>
+</div>
+</body>
+</html>
