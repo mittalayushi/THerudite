@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SIGN UP!</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+  Organisation: <input type="text" id="name"><br>
+  Email: <input type="email" id="email"><br>
+  Address: <input type="text" id="addr"><br>
+  <input type="submit" value="Submit" onclick="getdata()">
+</body>
+<script type="text/javascript">
+	function getdata(){
+		var name = document.getElementById("name").value;
+		var email = document.getElementById("email").value
+		var address = document.getElementById("addr").value
+		//console.log(name);
+		function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+               var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) == (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+             }
+          }
+      }
+ return cookieValue;
+}
+
+
+
+//Prepare csrf token
+ var csrftoken = getCookie('csrftoken');
+
+
+//Collect data from fields
+
+
+//This is the Ajax post.Observe carefully. It is nothing but details of where_to_post,what_to_post
+//Send data  
+ $.ajax({
+       url : 'http://localhost:8000/organisations/', // the endpoint,commonly same url
+       type : "POST", // http method
+       data : { csrfmiddlewaretoken : csrftoken, 
+       name : name,
+       //image : image,
+       email : email,
+       address : address,
+	}, // data sent with the post request
+
+ // handle a successful response
+ success : function(json) {
+ 		alert("hey");
+ 	    //window.location.href = "http://localhost:8000/upload/";
+		//console.log(json); // another sanity check
+ //On success show the data posted to server as a message
+
+ },
+
+ // handle a non-successful response
+ error : function(xhr,errmsg,err) {
+ console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+ }
+ });
+	}
+</script>
+</html>

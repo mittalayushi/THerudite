@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="67727805175-vc4qsntcbgvtntv9a7u27rqc528gu400.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body>
+	<div class="g-signin2" data-onsuccess="onSignIn" style="float:center; width:150%" ></div>
+	<script type="text/javascript">
+	var id_token="";
+	var name="";
+	var image="";
+	var email="";
+	var profile="";
+
+	function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  var id = profile.getId(); // Do not send to your backend! Use an ID token instead.
+	  name = profile.getName();
+	  image = profile.getImageUrl();
+	  email =profile.getEmail();
+	  id_token = googleUser.getAuthResponse().id_token;
+
+	   // sending data to server
+	   
+	   //var objectDataString = JSON.stringify(user);
+	   //console.log(user);
+
+	   //For getting CSRF token
+function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+               var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) == (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+             }
+          }
+      }
+ return cookieValue;
+}
+
+
+
+//Prepare csrf token
+ var csrftoken = getCookie('csrftoken');
+
+
+//Collect data from fields
+
+
+//This is the Ajax post.Observe carefully. It is nothing but details of where_to_post,what_to_post
+//Send data  
+ $.ajax({
+       url : 'http://localhost:8000/upload/', // the endpoint,commonly same url
+       type : "POST", // http method
+       data : { csrfmiddlewaretoken : csrftoken, 
+       name : name,
+       image : image,
+       email : email,
+       id_token : id_token,
+	}, // data sent with the post request
+
+ // handle a successful response
+ success : function(json) {
+ 		//alert(json);
+ 	    window.location.href = "http://localhost:8000/scholarship/recommended";
+		//console.log(json); // another sanity check
+ //On success show the data posted to server as a message
+
+ },
+
+ // handle a non-successful response
+ error : function(xhr,errmsg,err) {
+ console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+ }
+ });
+ }
+
+</script>	
+</body>
+</html>

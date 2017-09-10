@@ -1,0 +1,415 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+	<title>add scholarship</title>
+
+	    <meta name="viewport" content="width=device-width, initial-scale=1">      
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>            
+</head>
+<body>
+<form id="form">
+
+	field : 
+<select id="field">
+  <option value="NULL">--</option>
+  <option value="Humanities">Humanities</option>
+  <option value="Engineering">Engineering</option>
+  
+</select>
+<br>
+	category : 
+
+<select id="category">
+  <option value="NULL">--</option>
+  <option value="General">General</option>
+  <option value="SC">SC</option>
+  <option value="ST">ST</option>
+  <option value="OBC">OBC</option>
+</select>
+	<br>
+	gender : 
+<select id="gender">
+<option value="NULL">--</option>
+  <option value="boy">Boy</option>
+  <option value="only-girl">Only Girl</option>
+  <option value="girl">Girl</option>
+  <option value="others">Others</option>
+</select>
+<br>
+	overseas : 
+<select id="overseas">
+<option value="NULL">--</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+<br>
+sports :
+<select id="sports">
+	<option value="NULL">--</option>
+	<option value="allsports">All Sports</option>
+	<option value="badminton">Badminton</option>
+	<option value="volleyball">Volleyball</option>
+</select>
+<br>
+disability:
+<select id="disability">
+<option value="NULL">--</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+<br>
+Max Education: <input type="text" id="edu">
+<br>
+Income Ceiling:<input type="number" id="salary">
+<br>
+	<input type="submit" name="submit">
+</form>
+<a href="http"><button>Logout</button></a>
+</body>
+
+        <script type="text/javascript">
+          
+//alert('hello');
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            } 
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                //console.log(settings)
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    console.log("HERE in ajax set-up")
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        $('#form').on('submit', function(ev){
+            //console.log("Stopping event from propagation", ev)
+            ev.preventDefault();
+            ev.stopImmediatePropagation();
+            //alert('eht');
+            var income=document.getElementById("salary").value;
+            //alert(name);
+            var edu=document.getElementById("edu").value;
+            //alert(dob);
+            //dob=dob.toString()
+            var category=document.getElementById('category');
+            var category2=category.options[category.selectedIndex].value;
+            //alert(category2);
+            var physically_handicapped=document.getElementById('disability');
+            var physically_handicapped2=physically_handicapped.options[physically_handicapped.selectedIndex].value;
+            //alert(physically_handicapped2);
+            var gender=document.getElementById('gender');
+            var gender2=gender.options[gender.selectedIndex].value;
+            var field=document.getElementById('field');
+            var field2=field.options[field.selectedIndex].value;
+            var overseas=document.getElementById('overseas');
+            var overseas2=overseas.options[overseas.selectedIndex].value;
+            var sports=document.getElementById('sports');
+            var sports2=sports.options[sports.selectedIndex].value;
+            //alert(girl_child2);
+            //var gender=document.getElementById('gender');
+            //ar gender2=gender.options[gender.selectedIndex].value;
+            //alert(gender2);
+              $.ajax({
+                url: 'http://localhost:8000/scholarship/get_scholarship/',
+                method: 'POST',
+                data : { csrfmiddlewaretoken : csrftoken,
+                  category:category2,
+                  income:income,
+                  //dob:dob,
+                  //girl_child:girl_child2,
+                  physically_handicapped:physically_handicapped2, 
+                  //name:name,
+                  gender:gender2,
+                  field:field2,
+                  overseas:overseas2,
+                  sports:sports2,
+                  edu:edu,
+                },
+                //contentType: false,
+                //processData: false,
+                success : function(data){
+                    alert("hey");
+                window.location.href = "http://localhost:8000/scholarship/recommended/";
+                 },
+                 error : function(xhr,errmsg,err) {
+
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                    //console.log(csrftoken);
+                 }
+            })
+        })
+
+
+        </script>
+
+
+</html>-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>add scholarship</title>
+
+      <link type="text/css" rel="stylesheet" href="m2.css">
+   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+
+<style type="text/css">
+body{
+      background-color: none;
+      background-repeat: no-repeat;
+    background-size: cover;
+    }   
+    .reg{
+      margin-top: 2%;
+      height: auto;
+
+    }
+    
+    
+    </style>
+    <script type="text/javascript">
+$(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<div style="color:#193540; font-size: 2em; margin: 1% ">
+          thErudite
+     </div>
+   <div style="width: 100%;background-color:#193540;color: white; font-size:1.2em;height: 10% ">
+          
+      <ul id="dropdown1" class="dropdown-content" style="width: 20%; color:#193540 ">
+        <li><a href="http://localhost:8000/scholarship/view_profile" style="color:#193540">View Profile</a></li>
+        <li><a href="http://localhost:8000/scholarship/applications" style="color:#193540">View Applications</a></li>
+        <li><a href="http://localhost:8000/upload/upload_docs" style="color:#193540">Documents</a></li>
+        <li><a href="http://localhost:8000/logout" style="color:#193540">Logout</a></li>
+    </ul>
+         <nav style="background-color: #193540">
+            <div class="nav-wrapper">
+              <a style="margin-left:30px;">Recommended Scholarships</a>
+                 <ul class="right hide-on-med-and-down">
+                   <li style="margin-right:40px; "><a class="dropdown-button" href="#!" data-activates="dropdown1">Hi {{user_name}}<i class="material-icons right">arrow_drop_down</i></a></li>
+                 </ul>
+           </div>
+         </nav>
+    </div> 
+   <div class="container reg">
+     <div class="container"> 
+          <div class="card-panel hoverable">
+        <div id="registration-page" class="row">
+        <div class="container">
+
+  <div class="row">
+      <!-- left column -->
+      
+      
+      <!-- edit form column -->
+      <div class="col s12 personal-info">
+<form id="form">
+
+  <div class="input-field col s12 " style="padding-top: 0px; padding-left: 0px;"> 
+<select class="dropdown" id="field">
+<option value="" disabled selected>Field:</option>
+  
+  <option value="Humanities">Humanities</option>
+  <option value="Engineering">Engineering</option>
+  <!--<option value="opel">Opel</option>
+  <option value="audi">Audi</option>-->
+</select>
+</div>
+<br>
+  
+<div class="input-field col s12 " style="padding-top: 0px; padding-left: 0px;"> 
+<select class="dropdown" id="category">
+<option value="" disabled selected>Category:</option>
+  <option value="General">General</option>
+  <option value="SC">SC</option>
+  <option value="ST">ST</option>
+  <option value="OBC">OBC</option>
+</select>
+</div>
+  <br>
+  <div class="input-field col s12 " style="padding-top: 0px; padding-left: 0px;"> 
+<select class="dropdown" id="gender">
+<option value="" disabled selected>Gender:</option>
+  <option value="boy">Boy</option>
+  <option value="only-girl">Only Girl</option>
+  <option value="girl">Girl</option>
+  <option value="others">Others</option>
+</select>
+</div>
+<br>
+  <div class="input-field col s12 " style="padding-top: 0px; padding-left: 0px;"> 
+  Overseas:
+<select class="dropdown" id="overseas">
+<option value="NULL">--</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+</div>
+<br>
+<div class="input-field col s12 " style="padding-top: 0px; padding-left: 0px;"> 
+<select class="dropdown" id="sports">
+  <option value="" disabled selected>Sports:</option>
+  <option value="allsports">All Sports</option>
+  <option value="badminton">Badminton</option>
+  <option value="volleyball">Volleyball</option>
+</select>
+</div>
+<br>
+<div class="input-field col s12 " style="padding-top: 0px; padding-left: 0px;"> 
+<select class="dropdown" id="disability">
+<option value="" disabled selected>Disability:</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+</div>
+<br>
+
+<div class="input-field col s12" style="padding-top: 0px; padding-left: 0px;">
+ <input  type="text" id="edu" placeholder="Max Education:">
+</div>
+<br>
+<div class="input-field col s12" style="padding-top: 0px; padding-left: 0px;">
+<input type="number" id="salary" placeholder="Income Ceiling:">
+</div>
+<br>
+  <!-- <input type="submit" name="submit"> -->
+
+  <input class=" col s4 waves-effect waves-light btn" style="background-color:#193540;margin-left: 20%;" type="submit" name="submit">
+</form>
+
+<a href="http" ><button class="col s4 waves-effect waves-light btn" style="background-color:#193540;margin-left: 2px;">Logout</button></a>
+
+ </div>
+  </div>
+
+          </div>  
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+
+        <script type="text/javascript">
+          
+//alert('hello');
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            } 
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                //console.log(settings)
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    console.log("HERE in ajax set-up")
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        $('#form').on('submit', function(ev){
+            //console.log("Stopping event from propagation", ev)
+            ev.preventDefault();
+            ev.stopImmediatePropagation();
+            //alert('eht');
+            var income=document.getElementById("salary").value;
+            //alert(name);
+            var edu=document.getElementById("edu").value;
+            //alert(dob);
+            //dob=dob.toString()
+            var category=document.getElementById('category');
+            var category2=category.options[category.selectedIndex].value;
+            //alert(category2);
+            var physically_handicapped=document.getElementById('disability');
+            var physically_handicapped2=physically_handicapped.options[physically_handicapped.selectedIndex].value;
+            //alert(physically_handicapped2);
+            var gender=document.getElementById('gender');
+            var gender2=gender.options[gender.selectedIndex].value;
+            var field=document.getElementById('field');
+            var field2=field.options[field.selectedIndex].value;
+            var overseas=document.getElementById('overseas');
+            var overseas2=overseas.options[overseas.selectedIndex].value;
+            var sports=document.getElementById('sports');
+            var sports2=sports.options[sports.selectedIndex].value;
+            //alert(girl_child2);
+            //var gender=document.getElementById('gender');
+            //ar gender2=gender.options[gender.selectedIndex].value;
+            //alert(gender2);
+              $.ajax({
+                url: 'http://localhost:8000/scholarship/get_scholarship/',
+                method: 'POST',
+                data : { csrfmiddlewaretoken : csrftoken,
+                  category:category2,
+                  income:income,
+                  //dob:dob,
+                  //girl_child:girl_child2,
+                  physically_handicapped:physically_handicapped2, 
+                  //name:name,
+                  gender:gender2,
+                  field:field2,
+                  overseas:overseas2,
+                  sports:sports2,
+                  edu:edu,
+                },
+                //contentType: false,
+                //processData: false,
+                success : function(data){
+                    alert("hey");
+                window.location.href = "http://localhost:8000/scholarship/recommended/";
+                 },
+                 error : function(xhr,errmsg,err) {
+
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                    //console.log(csrftoken);
+                 }
+            })
+        })
+
+
+        </script>
+
+
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang='en'>
+   <head>
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1">      
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script> 
+      <style>
+   
+   body{
+      background-color: #193540;
+      background-repeat: no-repeat;
+    background-size: cover;
+    }   
+    .reg{
+      margin-top: 2%;
+      margin-bottom:50px;
+    }
+    .manthan{
+      font-weight: bold;
+      font-family: Hawaii 5-0, sans-serif;
+      color: #193540;
+    }
+
+    
+    
+      </style>
+       </head>
+       <script type="text/javascript">
+$(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+   
+   <body>
+   <div class="container reg">
+    <div class="container">
+          <div class="card-panel hoverable">
+        <div id="registration-page" class="row">
+            <form class="col s12" id="form">
+            <div class="container">
+              <div><p class="center-align manthan" style="font-size: 2em">Edit Profile</p></div>
+            
+<div class="row">
+              <div class="input-field col s12">
+          <input value={{user.name}} id="name" type="text" class="validate">
+          <label for="name">First Name</label>
+        </div>
+        </div>
+<div class="row">
+        <div class="input-field col s12">
+          <input value={{user.d_o_b}}  id="dob" type="date" class="validate">
+          <label class="active" for="dob">Date Of Birth</label>
+        </div>
+        </div>
+
+
+
+            <div class="row"  >
+                <div class="col s4" style="font-size: 1.2em;">Category</div>
+                <br>
+                <br>
+                <div class="input-field col s12">
+                  <select id='category' style="color: #193540">
+                  <option value="" disabled selected>Choose your option</option>
+                  <option style="color: #193540" value="General">General</option>
+                  <option style="color: #193540" value="SC">SC</option>
+                  <option style="color: #193540" value="ST">ST</option>
+                  <option style="color: #193540" value="BC">BC</option>
+                  <option style="color: #193540" value="Others">Others</option>
+                  </select>
+                </div>
+            </div>
+            <div class="row"  >
+                <div class="col s12" style="font-size: 1.2em;">Gender</div>
+                <br>
+                <br>
+                <div class="input-field col s12">
+                  <select id='gender' style="color: #193540">
+                  <option value="" disabled selected>Choose your option</option>
+                  <option style="color: #193540" value="male">Male</option>
+                  <option style="color: #193540" value="female">Female</option>
+                  <option style="color: #193540" value="others">Others</option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="row"  >
+                <div class="col s12" style="font-size: 1.2em;">Only Girl?</div>
+                <br>
+                <br>
+                <div class="input-field col s12">
+                  <select id='girl_child' style="color: #193540">
+                  <option value="" disabled selected>Choose your option</option>
+                  <option style="color: #193540" value="yes">Yes</option>
+                  <option style="color: #193540" value="no">No</option>
+                  </select>
+                </div>
+            </div>
+
+
+            <div class="row"  >
+                <div class="col s12" style="font-size: 1.2em;">Physically Handicapped?</div>
+                <br>
+                <br>
+                <div class="input-field col s12">
+                  <select id='physically_handicapped' style="color: #193540">
+                  <option value="" disabled selected>Choose your option</option>
+                  <option style="color: #193540" value="yes">Yes</option>
+                  <option style="color: #193540" value="no">No</option>
+                  </select>
+                </div>
+            </div>
+
+
+            
+<!--<div class="row">
+              <div class="input-field col s12">
+          <input value={{user.income}} id="income" type="text" class="validate">
+          <label for="income">Family's Annual Income:</label>
+        </div>
+        </div>
+-->
+                          
+            <div class="row">
+              <div class="input-field col s6">
+                <input class="btn waves-effect waves-light col s12" style="background-color: #193540" type="submit" name="Submit">
+              </div>
+            </div>
+            </div>
+          </form>
+      </div>
+    </div>
+    </div>
+  </div>
+        </body>
+
+        <script type="text/javascript">
+          
+//alert('hello');
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            } 
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                //console.log(settings)
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    console.log("HERE in ajax set-up")
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        $('#form').on('submit', function(ev){
+            //console.log("Stopping event from propagation", ev)
+            ev.preventDefault();
+            ev.stopImmediatePropagation();
+            alert('eht');
+            var name=document.getElementById("name").value;
+            alert(name);
+            var dob=document.getElementById("dob").value;
+            alert(dob);
+            dob=dob.toString()
+            var category=document.getElementById('category');
+            var category2=category.options[category.selectedIndex].value;
+            alert(category2);
+            var physically_handicapped=document.getElementById('physically_handicapped');
+            var physically_handicapped2=physically_handicapped.options[physically_handicapped.selectedIndex].value;
+            alert(physically_handicapped2);
+            var girl_child=document.getElementById('girl_child');
+            var girl_child2=girl_child.options[girl_child.selectedIndex].value;
+            alert(girl_child2);
+            var gender=document.getElementById('gender');
+            var gender2=gender.options[gender.selectedIndex].value;
+            alert(gender2);
+              $.ajax({
+                url: 'http://localhost:8000/scholarship/edit_profile/',
+                method: 'POST',
+                data : { csrfmiddlewaretoken : csrftoken,
+                  category:category2,
+                  //income:income,
+                  dob:dob,
+                  girl_child:girl_child2,
+                  physically_handicapped:physically_handicapped2, 
+                  name:name,
+                  gender:gender2,
+                },
+                //contentType: false,
+                //processData: false,
+                success : function(data){
+                    alert("hey");
+                window.location.href = "http://localhost:8000/scholarship/view_profile/";
+                 },
+                 error : function(xhr,errmsg,err) {
+
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                    //console.log(csrftoken);
+                 }
+            })
+        })
+
+
+        </script>
+
+
+
+
+        </html>

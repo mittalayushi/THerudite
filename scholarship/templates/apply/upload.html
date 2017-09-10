@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+    <form id="form">
+        <input type="file" id="transcripts" name="file">
+        <br>
+        <input type="file" id="LOK" name="file">
+        
+        <br>
+        <input type="file" id="language_certi" name="file">
+        
+        <br>
+        <input type="file" id="sop" name="file">
+        
+        <br>
+        <input type="file" id="score" name="file">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+<script>
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            } 
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                console.log(settings)
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    console.log("HERE in ajax set-up")
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        $('#form').on('submit', function(ev){
+            //console.log("Stopping event from propagation", ev)
+            ev.preventDefault();
+            //console.log("Sending Request ", csrftoken)
+            var fd = new FormData();
+            //console.log(document.getElementById('file').files[0])
+            fd.append('file', document.getElementById('transcripts').files[0])
+            fd.append('file', document.getElementById('LOK').files[0])
+            fd.append('file', document.getElementById('language_certi').files[0])
+            fd.append('file', document.getElementById('sop').files[0])
+            fd.append('file', document.getElementById('score').files[0])
+            //console.log(fd)
+            $.ajax({
+                url: 'http://localhost:8000/scholarship/docs/',
+                method: 'POST',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success : function(data){
+                    alert("hey");
+                //window.location.href = "http://localhost:8000/upload/";
+                 },
+                 error : function(xhr,errmsg,err) {
+
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                    //console.log(csrftoken);
+                 }
+            })
+        })
+    </script>
+</html>

@@ -1,0 +1,137 @@
+<html>
+    <head>
+          <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+
+ 
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+
+
+     
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <div>
+    <center>
+        <img style="height: 12%; width: 6%" src="http://localhost:8000/static/onlylogo.png">
+        </center>
+        </div>
+        <div style="width: 100%;background-color:#193540;color: white; font-size:1.2em;height: 10% ">
+          <!--<div style="margin:2%">Upload documents</div>-->
+          <ul id="dropdown1" class="dropdown-content" style="width: 20%; color:#193540 ">
+  <li><a href="http://localhost:8000/scholarship/view_profile" style="color:#193540">View Profile</a></li>
+  <li><a href="http://localhost:8000/scholarship/filters" style="color:#193540">Filters</a></li>
+  <li><a href="http://localhost:8000/scholarship/applications" style="color:#193540">View Applications</a></li>
+  <li><a href="http://localhost:8000/scholarship/upload_docs" style="color:#193540">Documents</a></li>
+  <li><a href="http://localhost:8000/logout" style="color:#193540">Logout</a></li>
+</ul>
+<nav style="background-color: #262228">
+  <div class="nav-wrapper">
+    <a style="margin-left:30 ">Recommended Scholarships</a>
+    <ul class="right hide-on-med-and-down">
+     
+      
+      <!-- Dropdown Trigger -->
+      <li style="margin-right:40; "><a class="dropdown-button" href="#!" data-activates="dropdown1">Hi {{user_name}}<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
+        </div> 
+        <br> 
+
+        <div class="row" style="margin-left: 2%">
+          <p style="color: #193540; font-size: 1.2em">Go to Hi User -> Details -> Fill Out Your Details -> Get Best Scholarships For You</p>
+        </div>
+        <div class="row"> 
+        {% for obj in recommendations %}
+        <div class="col s12 m3">
+          <div class="card" style="background-color: #007849; height: 36%">
+            <div class="card-content white-text" style="height: 80%">
+              <span class="card-title" style="font-size: 110%">{{obj.org_name}}-{{obj.name}}</span>
+              <p style="font-size: 79%">Rate: {{obj.Rate}}<br>
+              Documents Required: {{obj.documents_req}}
+              </p>
+            </div>
+            <div class="card-action">
+              <a href="#" data-id={{obj.org_id}} data-name={{obj.name}} onclick="onapply(this)">Apply</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+      </div>
+            
+    </body>  
+    <script type="text/javascript">
+
+            function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            } 
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                console.log(settings)
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    console.log("HERE in ajax set-up")
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+
+
+
+
+
+      function onapply(applied_for){
+        //ev.preventDefault();
+
+        var id = applied_for.getAttribute('data-id');
+        var name = applied_for.getAttribute('data-name');
+        console.log(id);
+        console.log(name);
+
+         $.ajax({
+                url: 'http://localhost:8000/scholarship/applied_for/',
+                method: 'POST',
+                data : { csrfmiddlewaretoken : csrftoken,
+                  id:id,
+                  name:name,
+                },
+                //contentType: false,
+                //processData: false,
+                success : function(data){
+                    alert(data);
+                      
+                 },
+                 error : function(xhr,errmsg,err) {
+
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                    //console.log(csrftoken);
+                 }
+            })
+
+      }
+    </script>
+     </html>       

@@ -1,0 +1,280 @@
+
+<html>
+    <head>
+
+   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+<script type="text/javascript">
+  $( document ).ready(function(){
+    $(".dropdown-button").dropdown();
+  })
+</script>
+
+     
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         
+        </style>
+        </head>
+     <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+        <div style="color:#193540; font-size: 2em; margin: 1% ">
+          thErudite
+        </div>
+        <div style="width: 100%;background-color:#193540;color: white; font-size:1.2em;height: 10% ">
+          <!--<div style="margin:2%">Upload documents</div>-->
+          <ul id="dropdown1" class="dropdown-content" style="width: 20%; color:#193540 ">
+  <li><a href="http://localhost:8000/scholarship/view_profile" style="color:#193540">View Profile</a></li>
+  <li><a href="http://localhost:8000/scholarship/applications" style="color:#193540">View Applications</a></li>
+  <li><a href="http://localhost:8000/upload/upload_docs" style="color:#193540">Documents</a></li>
+  <li><a href="http://localhost:8000/logout" style="color:#193540">Logout</a></li>
+</ul>
+</ul>
+<nav style="background-color: #193540">
+  <div class="nav-wrapper">
+    
+    <ul class="right hide-on-med-and-down">
+     
+      
+      <!-- Dropdown Trigger -->
+      <li style="margin-right:40; "><a class="dropdown-button" href="#!" data-activates="dropdown1">Hi {{name}}<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
+        </div>
+        <div id="docs">
+         <table class="responsive-table striped">
+        <thead>
+          <tr>
+              <th>Document Name</th>
+              
+                  </tr>
+        </thead>
+
+        <tbody>
+
+
+          <tr>
+            <td>Medical:</td>
+            <td><div class="file-field input-field">
+      <div class="btn" style="background-color: #193540">
+        <span>File</span>
+        <input id="medical" type="file">
+      </div>
+      <div class="file-path-wrapper" style="width: 60%">
+        <input class="file-path validate" type="text">
+      </div>
+    </div></td>
+            <td><a class="waves-effect waves-light btn" data-path={{user.physical_medical}} style="background-color: #193540" onclick="showmedical(this)">View</a></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540" onclick="upload_med()">Upload</a></td>
+          </tr>
+          
+
+          <tr>
+            <td>Transcripts</td>
+            <td><div class="file-field input-field">
+      <div class="btn" style="background-color: #193540">
+        <span>File</span>
+        <input id="transcripts" type="file">
+      </div>
+      <div class="file-path-wrapper" style="width: 60%">
+        <input class="file-path validate" type="text">
+      </div>
+    </div></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540 " data-path={{user.transcripts}} onclick="showtrans(this)">View</a></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540" onclick="upload_trans()">Upload</a></td>
+          </tr>
+
+
+
+       
+        </tbody>
+      </table>
+            
+
+        
+</div>
+      </body>
+        <script type="text/javascript">
+          
+
+
+        function showmedical(medical){
+          var path=medical.getAttribute('data-path');
+          document.getElementById("docs").innerHTML="<embed src=\"http://localhost:8000/"+path+"\" width=\"100%\" height=\"100%\"/>"
+        }
+ function showtrans(trans){
+          var path=trans.getAttribute('data-path');
+          document.getElementById("docs").innerHTML="<embed src=\"http://localhost:8000/"+path+"\" width=\"100%\" height=\"100%\"/>"
+        }
+
+
+          function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            } 
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                console.log(settings)
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    console.log("HERE in ajax set-up")
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+
+
+
+        
+
+
+        function upload_med(){
+          var fd = new FormData();
+            
+            //console.log(document.getElementById('file').files[0])
+            fd.append('file', document.getElementById('medical').files[0])
+            //console.log(fd)
+            $.ajax({
+                url: 'http://localhost:8000/scholarship/getmedical/',
+                method: 'POST',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success : function(data){
+                    alert("hey");
+                //window.location.href = "http://localhost:8000/upload/fill_details";
+                 },
+                 error : function(xhr,errmsg,err) {
+
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                    //console.log(csrftoken);
+                 }
+            })
+        }
+
+
+
+
+
+
+
+
+        function upload_trans(){
+          var fd = new FormData();
+            
+            //console.log(document.getElementById('file').files[0])
+            fd.append('file', document.getElementById('transcripts').files[0])
+            //console.log(fd)
+            $.ajax({
+                url: 'http://localhost:8000/scholarship/gettrans/',
+                method: 'POST',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success : function(data){
+                    alert("hey");
+                //window.location.href = "http://localhost:8000/upload/fill_details";
+                 },
+                 error : function(xhr,errmsg,err) {
+
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                    //console.log(csrftoken);
+                 }
+            })
+        }
+
+
+
+        </script>
+         
+     
+     </html>       
+
+       <!-- <tr>
+            <td>Letter Of Recommendation</td>
+            <td><div class="file-field input-field">
+      <div class="btn" style="background-color: #193540">
+        <span>File</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper" style="width: 60%">
+        <input class="file-path validate" type="text">
+      </div>
+    </div></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540">View</a></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540">Upload</a></td>
+          </tr>
+          
+
+
+          <tr>
+            <td>Language Certificate</td>
+            <td><div class="file-field input-field">
+      <div class="btn" style="background-color: #193540">
+        <span>File</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper" style="width: 60%">
+        <input class="file-path validate" type="text">
+      </div>
+    </div></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540">View</a></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540">Upload</a></td>
+          </tr>
+          
+
+
+          <tr>
+            <td>Statement of Purpose</td>
+            <td><div class="file-field input-field">
+      <div class="btn" style="background-color: #193540">
+        <span>File</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper" style="width: 60%">
+        <input class="file-path validate" type="text">
+      </div>
+    </div></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540">View</a></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540">Upload</a></td>
+          </tr>
+          
+
+
+                    <tr>
+            <td>GRE/SAT/GMAT score</td>
+            <td><div class="file-field input-field">
+      <div class="btn" style="background-color: #193540">
+        <span>File</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper" style="width: 60%">
+        <input class="file-path validate" type="text">
+      </div>
+    </div></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540">View</a></td>
+            <td><a class="waves-effect waves-light btn" style="background-color: #193540">Upload</a></td>
+          </tr>
+
+-->
