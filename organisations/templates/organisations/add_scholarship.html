@@ -1,0 +1,78 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>add scholarship</title>
+</head>
+<body>
+<form method="POST" action="/organisations/add_scholarship/"> {% csrf_token %}
+	Scholarship Name : <input type="text" name="scholarship_name">
+	<br>
+	
+	Description:<input type="textarea" name="description">
+	<br>
+
+	field : 
+<select name="field">
+  <option value="NULL">--</option>
+  <option value="Humanities">Humanities</option>
+  <option value="Engineering">Engineering</option>
+  
+</select>
+<br>
+	category : 
+
+<select name="category">
+  <option value="NULL">--</option>
+  <option value="General">General</option>
+  <option value="SC">SC</option>
+  <option value="ST">ST</option>
+  <option value="OBC">OBC</option>
+</select>
+	<br>
+	gender : 
+<select name="gender">
+<option value="NULL">--</option>
+  <option value="boy">Boy</option>
+  <option value="only-girl">Only Girl</option>
+  <option value="girl">Girl</option>
+  <option value="others">Others</option>
+</select>
+<br>
+	overseas : 
+<select name="overseas">
+<option value="NULL">--</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+<br>
+sports :
+<select name="sports">
+	<option value="NULL">--</option>
+	<option value="allsports">All Sports</option>
+	<option value="badminton">Badminton</option>
+	<option value="volleyball">Volleyball</option>
+</select>
+<br>
+disability:
+<select name="disability">
+<option value="NULL">--</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+<br>
+Max Education: <input type="text" name="edu">
+<br>
+Income Ceiling:<input type="text" name="salary">
+<br>
+Documents: <input type="docs" name="docs">
+	<br>
+	Amount : <input type="text" name="amount">
+	<br>
+	<input type="submit" name="submit">
+</form>
+<a href="http://localhost:8000/organisations/logout/"><button>Logout</button></a>
+</body>
+</html>

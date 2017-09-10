@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>login</title>
+</head>
+<body>
+<form method="POST" action="/organisations/signup"> {% csrf_token %} 
+	Love 
+	<br>
+		Organisation Name : <input type="text" name="org_name">
+		<br>
+		Address: <input type="text" name="address">
+		<br>
+		Phone Number : <input type="text" name="phone_no">
+		<br>
+		Manager Name : <input type="text" name="name">
+		<br>
+		Email : <input type="text" name="email">
+		<br>
+		Password : <input type="Password" name="password">
+		<br>
+		<input type="submit" name="Submit">
+		<br>
+	
+</form>
+
+</body>
+</html>

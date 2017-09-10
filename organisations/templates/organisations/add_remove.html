@@ -1,0 +1,63 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+	<title>Add/Remove</title>
+</head>
+<body>
+
+<a href="http://localhost:8000/organisations/add_scholarship"><button>Add</button></a>
+<a href="http://localhost:8000/organisations/view_scholarship"><button>View</button></a>
+<a href="http://localhost:8000/organisations/remove_scholarship"><button>Remove</button></a>
+<a href="http://localhost:8000/organisations/logout/"><button>Logout</button></a>
+
+</body>
+</html>-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add/Remove</title>
+	<link type="text/css" rel="stylesheet" href="m2.css">
+   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+   <style type="text/css">
+   
+    body{
+      background-color: none;
+      background-repeat: no-repeat;
+    background-size: cover;
+    }   
+    </style>
+      <script type="text/javascript">
+$(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<div >
+      <center>
+        <img style="height: 12%; width: 6%" src="http://localhost:8000/static/onlylogo.png">
+        </center>
+          </div>
+   <div style="width: 100%;background-color:#262228;color: white; font-size:1.2em;height: 10% ">
+         <nav style="background-color: #262228">
+            <div class="nav-wrapper">
+              <a style="margin-left:30px; font-size: 1.3em">thErudite</a>
+           </div>
+         </nav>
+    </div> 
+    <div class="container" align="center" style="margin-top: 5%"> 
+
+<a class="col s12  offset-s3 waves-effect waves-light btn-large flow-text " href="http://localhost:8000/organisations/add_scholarship" style="background-color: #262228;width:50%;">Add</a>
+<a class="col s12  offset-s3 waves-effect waves-light btn-large flow-text " href="http://localhost:8000/organisations/view_scholarship" style="background-color: #262228;width:50%;margin-top: 2%;">View</a>
+<a class="col s12  offset-s3 waves-effect waves-light btn-large flow-text " href="http://localhost:8000/organisations/remove_scholarship" style="background-color: #262228;width:50%;margin-top: 2%;">Remove</a>
+<a class="col s12  offset-s3 waves-effect waves-light btn-large flow-text " href="http://localhost:8000/organisations/logout/" style="background-color: #262228;width:50%;margin-top: 2%;">Logout</a>
+</div>
+
+</body>
+</html>
